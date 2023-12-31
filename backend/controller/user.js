@@ -18,10 +18,14 @@ export const createUser = async (req, res, next) => {
   try {
     const { name, email, password,avatar } = req.body;
 
+    if(!name || !email || !password || !avatar){
+      return next(new ErrorHandler('please fill all the fields', 400));
+    }
+
     const checkEmail = await User.findOne({ email });
     if (checkEmail) {
-      res.status(400)
-    throw new Error("User Already Exists")
+      return next(new ErrorHandler('User Already Exists', 400));
+   
   }
   
 
