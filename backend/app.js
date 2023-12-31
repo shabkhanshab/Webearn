@@ -30,9 +30,10 @@ cloudinary.config({
 })
 
 app.use(cookieParser())
-app.use(cors({origin:"https://webearn.vercel.app/",credentials:true}))
-
 app.use(express.json())
+app.use(cors({origin:"https://webearn.vercel.app",credentials:true}))
+
+
 
 app.use(bodyParser.urlencoded({extended:true,limit:"50mb"}))
 
