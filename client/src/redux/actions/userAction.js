@@ -11,7 +11,7 @@ import {
 export const userAction = () => async (dispatch) => {
   try {
     dispatch(LoadUserRequest());
-     const { data } = await axios.get("http://localhost:8000/api/v2/user/get-user", 
+     const { data } = await axios.get("https://webearn-dsk8.vercel.app/api/v2/user/get-user", 
     {
       withCredentials: true,
     }

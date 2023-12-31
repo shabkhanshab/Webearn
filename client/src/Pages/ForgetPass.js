@@ -15,7 +15,7 @@ const ForgetPass = () => {
     const handelSubmit = async()=>{
 
         try{
-            const data = await axios.post("http://localhost:8000/api/v2/user/forget-email",{email})
+            const data = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/forget-email",{email})
 
             if(data){
                 console.log(data)

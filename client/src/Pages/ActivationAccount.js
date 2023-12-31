@@ -13,7 +13,7 @@ const ActivationAccount = () => {
         const activationEmail = async()=>{
             try{
                 
-                const res = await axios.post(`http://localhost:8000/api/v2/user/activation`,{activation_token})
+                const res = await axios.post(`https://webearn-dsk8.vercel.app/api/v2/user/activation`,{activation_token})
                 console.log(res)
             }
             catch(err){

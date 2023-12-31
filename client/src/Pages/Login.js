@@ -32,7 +32,7 @@ const Login = () => {
     e.preventDefault()
     // , {withCredentials:true} 
     try{
-      const user = await axios.post("http://localhost:8000/api/v2/user/login-user",
+      const user = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/login-user",
       {email,pass} 
       ,{withCredentials:true})
       
@@ -57,7 +57,7 @@ const Login = () => {
 
   const handelForgetPass = async(e)=>{
     try{
-      const forget = await axios.post("http://localhost:8000/api/v2/user/forget-email",)
+      const forget = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/forget-email",)
     }
     catch(err){
       toast.error(err.response && err.response.data.message ? err.response.data.message : err.message)

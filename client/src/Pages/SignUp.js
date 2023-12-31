@@ -47,7 +47,7 @@ console.log("avatar",avatar);
 
     try {
       const dat = await axios.post(
-        "http://localhost:8000/api/v2/user/create-user",
+        "https://webearn-dsk8.vercel.app/api/v2/user/create-user",
         { name, email,  password, avatar }
       );
       toast.success(dat.data.message);

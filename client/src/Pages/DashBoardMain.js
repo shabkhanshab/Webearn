@@ -616,7 +616,7 @@ const PaymentMethod =({setActive,trace})=>{
    const DeleteButtonHandel = async ()=>{
     try{
         const id = user.user._id
-        const data = await axios.post('http://localhost:8000/api/v2/user/payment-method-delete'
+        const data = await axios.post('https://webearn-dsk8.vercel.app/api/v2/user/payment-method-delete'
         ,{id,password}, {withCredentials:true})
         console.log(data);
         
@@ -643,7 +643,7 @@ const PaymentMethod =({setActive,trace})=>{
    const AddUpi = async()=>{
     try{
         const id = user.user._id
-        const data = await axios.post("http://localhost:8000/api/v2/user/add-pay-upi"
+        const data = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/add-pay-upi"
         ,{upi,id},{withCredentials:true}
         )
 
@@ -989,7 +989,7 @@ const Password =({name,trace,setActive,user})=>{
 
     try{
       const {data} = 
-      await axios.post("http://localhost:8000/api/v2/user/reset-pass",
+      await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/reset-pass",
       {password,newPassword,id},
       {
         withCredentials: true,
@@ -1006,7 +1006,7 @@ const Password =({name,trace,setActive,user})=>{
   const forgetEmail= async()=>{
     try{
       const {data} = 
-      await axios.post("http://localhost:8000/api/v2/user/forget-email",
+      await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/forget-email",
       {id},
       {
         withCredentials: true,

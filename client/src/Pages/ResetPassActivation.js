@@ -12,7 +12,7 @@ const ResetPassActivation = () => {
     useEffect(()=>{
         const calling = async() =>{
             try{
-                const {data} = await axios.post("http://localhost:8000/api/v2/user/reset-pass-activation",{resetactivation_token})
+                const {data} = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/reset-pass-activation",{resetactivation_token})
                
                 setError(false)
             }
