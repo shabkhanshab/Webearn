@@ -20,33 +20,33 @@ const userSchema = new mongoose.Schema({
     maxLength: [16, "Password length must be 4 to 16"],
     select: false,
   },
-  addresses:[
-    {
-      state: {
-        type: String,
+  // addresses:[
+  //   {
+  //     state: {
+  //       type: String,
        
-      },
-      city:{
-        type: String,
+  //     },
+  //     city:{
+  //       type: String,
       
-      },
-      address1:{
-        type: String,
+  //     },
+  //     address1:{
+  //       type: String,
 
-      },
-      address2:{
-        type: String,
+  //     },
+  //     address2:{
+  //       type: String,
       
-      },
-      zipCode:{
-        type: Number,
+  //     },
+  //     zipCode:{
+  //       type: Number,
        
-      },
-      addressType:{
-        type: String,
-      },
-    }
-  ],
+  //     },
+  //     addressType:{
+  //       type: String,
+  //     },
+  //   }
+  // ],
   role:{
     type:String,
     default:"user"
@@ -55,11 +55,11 @@ const userSchema = new mongoose.Schema({
   avatar:{
     public_id:{
       type:String,
-      required:true
+      // required:true
     },
     url:{
       type:String,
-      required:true
+      // required:true
     }
    
   },

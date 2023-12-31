@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 
 import Lottie from "lottie-react";
 import AnimationLogin from '../anim/Animation - Login.json'
+import Loader from "../anim/Loader";
 // import { response } from "express";
 
 // import express from "express";
@@ -21,6 +22,7 @@ const SignUp = () => {
   const [confirmPass, setComfirmPass] = useState("");
   const [show, setShow] = useState(false);
   const [avatar, setAvatar] = useState(null);
+  const [loading,setLoading] = useState(false)
   const navigate = useNavigate();
 
   const { isAuthenticatd } = useSelector((state) => state.userRed);
@@ -50,14 +52,21 @@ console.log("avatar",avatar);
         "https://webearn-dsk8.vercel.app/api/v2/user/create-user",
         { name, email,  password, avatar }
       );
-      toast.success(dat.data.message);
-      navigate("/login");
-      setName("");
-      setEmail("");
-      setPass("");
-      setComfirmPass("");
-      setAvatar();
+      setLoading(true)
+      
+      if(dat){
+        setLoading(false)
+        toast.success(dat.data.message);
+        navigate("/login");
+        setName("");
+        setEmail("");
+        setPass("");
+        setComfirmPass("");
+        setAvatar();
+      }
+     
     } catch (err) {
+      setLoading(false)
       toast.error(
         err.response && err.response.data.message
           ? err.response.data.message
@@ -68,6 +77,13 @@ console.log("avatar",avatar);
   };
 
   return (
+    <>
+   
+    {
+      loading ? <Loader/> :
+    <>
+  
+
     <div className="bg-[#003459] py-12 min-h-screen sm:px-6 lg:px-8 flex justify-center flex-col">
 
     <div className="flex justify-center  ">
@@ -247,6 +263,9 @@ console.log("avatar",avatar);
           </div>
         </div>
         </div>
+        </>
+                        }
+                         </>
   );
 };
 
