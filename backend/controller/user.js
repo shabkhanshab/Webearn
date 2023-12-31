@@ -304,7 +304,8 @@ export const throughemailresetpass = catchAsynError(async(req,res,next)=>{
           if(changepass){
             res.cookie("token",null ,{
               expires: new Date(Date.now()),
-              httpOnly: true,     
+              httpOnly: true,  
+              sameSite:"none",   
               secure: true
             })
              try{
@@ -420,7 +421,8 @@ export const logout = catchAsynError(async(req,res,next)=>{
     console.log("logout");
     res.cookie("token",null ,{
       expires: new Date(Date.now()),
-      httpOnly: true,      // Corrected from httpsOnly to httpOnly
+      httpOnly: true,
+      sameSite:"none",      // Corrected from httpsOnly to httpOnly
       secure: true
     })
     res.status(201).json({
