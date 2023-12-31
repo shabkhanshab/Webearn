@@ -60,7 +60,7 @@ const myCloud = await cloudinary.v2.uploader.upload(
             Thanks,
             The newShop Team `,
       });
-     
+     console.log("sendingemail", sendingMail,"user",user);
       if (sendingMail) {
        
         res.status(201).json({
