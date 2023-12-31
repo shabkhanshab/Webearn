@@ -49,7 +49,7 @@ const myCloud = await cloudinary.v2.uploader.upload(
     const activeTokenUrl = `https://webearn.vercel.app/activation/${token}`;
 
     try {
-      const sendingMail = nodeMail({
+      const sendingMail = await nodeMail({
         email: user.email,
         subject: "[newShop] Please verify your device",
         text: 
@@ -186,7 +186,7 @@ export const resetPass = catchAsynError(async(req,res,next)=>{
        const token = resetActivationToken(user)
        const activeTokenUrl = `https://webearn.vercel.app/resetactivation/${token} `
        try{
-        const passUpdateEmail = nodeMail({
+        const passUpdateEmail = await nodeMail({
           email:passupdate.email,
           subject: "[newShop] Change password ",
           text: 
@@ -309,7 +309,7 @@ export const throughemailresetpass = catchAsynError(async(req,res,next)=>{
               secure: true
             })
              try{
-             const passUpdateEmail = nodeMail({
+             const passUpdateEmail = await nodeMail({
                email:email,
                subject: "[newShop] Change password ",
                text: 
@@ -362,7 +362,7 @@ export const forgetEmail = catchAsynError(async(req,res,next)=>{
     const token = resetActivationToken(user)
     const activeTokenUrl = `https://webearn.vercel.app/resetactivation/${token} `
     try{
-     const passUpdateEmail = nodeMail({
+     const passUpdateEmail =await nodeMail({
        email:checkid.email,
        subject: "[newShop] Change password ",
        text: 
