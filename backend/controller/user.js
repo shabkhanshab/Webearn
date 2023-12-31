@@ -18,7 +18,7 @@ export const createUser = async (req, res, next) => {
   try {
     const { name, email, password,avatar } = req.body;
 
-    if(!name || !email || !password || !avatar){
+    if(!name || !email || !password ){
       return next(new ErrorHandler('please fill all the fields', 400));
     }
 
@@ -45,11 +45,11 @@ const myCloud = await cloudinary.v2.uploader.upload(
     },
   };
 
-    const token =  activationToken(user);
+    const token =   activationToken(user);
     const activeTokenUrl = `https://webearn.vercel.app/activation/${token}`;
 
     try {
-      const sendingMail = await nodeMail({
+      await nodeMail({
         email: user.email,
         subject: "[newShop] Please verify your device",
         text: 
@@ -61,15 +61,13 @@ const myCloud = await cloudinary.v2.uploader.upload(
             The newShop Team `,
       });
 
-     console.log("user",user);
-      if (sendingMail) {
        
         res.status(201).json({
           success: true,
           message: `please check your email :- ${user.email} to activate your acccount `,
-        });
+         } );
       }
-    } catch (err) {
+   catch (err) {
       return next(new ErrorHandler(err.message, 500));
     }
   } catch (err) {
