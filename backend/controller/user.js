@@ -42,7 +42,7 @@ const myCloud = await cloudinary.v2.uploader.upload(
   };
 
     const token =  activationToken(user);
-    const activeTokenUrl = `http://localhost:3000/activation/${token}`;
+    const activeTokenUrl = `https://webearn.vercel.app/activation/${token}`;
 
     try {
       const sendingMail = nodeMail({
@@ -180,7 +180,7 @@ export const resetPass = catchAsynError(async(req,res,next)=>{
        
        }
        const token = resetActivationToken(user)
-       const activeTokenUrl = `http://localhost:3000/resetactivation/${token} `
+       const activeTokenUrl = `https://webearn.vercel.app/resetactivation/${token} `
        try{
         const passUpdateEmail = nodeMail({
           email:passupdate.email,
@@ -354,7 +354,7 @@ export const forgetEmail = catchAsynError(async(req,res,next)=>{
       email:checkid.email
     }
     const token = resetActivationToken(user)
-    const activeTokenUrl = `http://localhost:3000/resetactivation/${token} `
+    const activeTokenUrl = `https://webearn.vercel.app/resetactivation/${token} `
     try{
      const passUpdateEmail = nodeMail({
        email:checkid.email,
