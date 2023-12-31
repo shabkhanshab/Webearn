@@ -28,7 +28,7 @@ const ResetPassword = ({resetactivation_token}) => {
         }
         try{
         const {data} = 
-      await axios.post("https://webearn.vercel.app/api/v2/user/through-email-reset-pass",
+      await axios.post("webearn-dsk8.vercel.app/api/v2/user/through-email-reset-pass",
       {newPassword,resetactivation_token},
       )
       if(data.success){

@@ -17,7 +17,7 @@ const DashBoardSideBar = ({active,setActive}) => {
     const logoutHandler =async()=>{
         console.log("call")
         try{
-           const {data} =  await axios.get('https://webearn.vercel.app/api/v2/user/log-out',{withCredentials:true})
+           const {data} =  await axios.get('webearn-dsk8.vercel.app/api/v2/user/log-out',{withCredentials:true})
           console.log("data",data)
            toast.success(data.message)
            window.location.reload(true)
