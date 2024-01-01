@@ -34,13 +34,23 @@ const SignUp = () => {
   }, []);
 
   const setProfileAvatar = (e) => {
-    const render = new FileReader();
-    render.readAsDataURL(e.target.files[0]);
-    render.onload = () => {
-      if (render.readyState === 2) {
-        setAvatar(render.result);
+    const selected = e.target.files[0]
+    const maxSizeInBytes = 1024 * 1024
+    if(selected){
+      if(selected.size > maxSizeInBytes ){
+        alert("Image size to large! please upload less than 1 mb file")
       }
-    };
+    }
+    else{
+      const render = new FileReader();
+      render.readAsDataURL(e.target.files[0]);
+      render.onload = () => {
+        if (render.readyState === 2) {
+          setAvatar(render.result);
+        }
+      };
+    }
+  
   };
 console.log("avatar",avatar);
 
