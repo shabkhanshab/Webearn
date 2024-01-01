@@ -36,7 +36,7 @@ const Home = () => {
     navigate("/login")
   }
   return (
-    <div className='bg-[#008000]  w-full '>
+    <div className='bg-[#003459]  w-full '>
 
       <div className='flex w-full '>
 
@@ -86,7 +86,7 @@ const Home = () => {
           <div className=' mb-5 800px:mb-0  flex mt-10 justify-center items-center'>
             <button className='bg-[#fffffff4] px-8 py-2 animate-bounce cursor-pointer
              rounded-md mr-5' onClick={handelSignup}>
-              <span className='text-[18px] text-[#008000] font-[600] '>
+              <span className='text-[18px] text-[#00171f] font-[600] '>
               SignUp
               </span>
             </button>
@@ -97,7 +97,7 @@ const Home = () => {
              rounded-md mr-5'
              onClick={handelLogin}
              >
-            <span className='text-[18px] text-[#008000] font-[600] '>
+            <span className='text-[18px] text-[#00171f] font-[600] '>
               Login
               </span>
             </button>

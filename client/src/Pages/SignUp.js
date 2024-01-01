@@ -37,11 +37,15 @@ const SignUp = () => {
     const selected = e.target.files[0]
     const maxSizeInBytes = 1024 * 1024
     if(selected){
+      console.log("insie");
       if(selected.size > maxSizeInBytes ){
+        console.log("im");
         alert("Image size to large! please upload less than 1 mb file")
+        return
       }
-    }
+    
     else{
+      console.log("imnot");
       const render = new FileReader();
       render.readAsDataURL(e.target.files[0]);
       render.onload = () => {
@@ -50,6 +54,9 @@ const SignUp = () => {
         }
       };
     }
+   
+  } 
+    
   
   };
 console.log("avatar",avatar);
@@ -236,7 +243,7 @@ console.log("avatar",avatar);
                       </span>
                       <label
                         htmlFor="file-input"
-                        className="ml-5 flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm backdrop:font-medium text-gray-700 bg-white hover:backdrop:bg-gray-50"
+                        className="ml-5 cursor-pointer flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm backdrop:font-medium text-gray-700 bg-white hover:backdrop:bg-gray-50"
                       >
                         <span>Upload a Image</span>
                         <input type="file" name="avatar"
