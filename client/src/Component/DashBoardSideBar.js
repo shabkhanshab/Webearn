@@ -13,10 +13,12 @@ import axios from 'axios'
 const DashBoardSideBar = ({active,setActive}) => {
     const navigate = useNavigate()
     const [clickLogout,setClickLogOut] = useState(false)
+    const [loading,setLoading] = useState(false)
 
     const logoutHandler =async()=>{
         console.log("call")
         try{
+            setLoading(true)
            const {data} =  await axios.get('https://webearn-dsk8.vercel.app/api/v2/user/log-out',{withCredentials:true})
           console.log("data",data)
            toast.success(data.message)
@@ -25,9 +27,14 @@ const DashBoardSideBar = ({active,setActive}) => {
            
         }
         catch(err){
+            setLoading(false)
             toast.error(err.response && err.response.data.message ? err.response.data.message : err.message)
 
         }
+        finally{
+            setLoading(false)
+        }
+
     }
 
   return (
@@ -159,8 +166,11 @@ const DashBoardSideBar = ({active,setActive}) => {
     </div>
 
 {clickLogout && (
-           
-  <div className="top-0 left-0 w-full  h-screen bg-[#0000004b]  py-5 px-2 shadow-xl
+    
+        loading ? 
+        <Loader/> 
+        :
+        <div className="top-0 left-0 w-full  h-screen bg-[#0000004b]  py-5 px-2 shadow-xl
    fixed z-30  800px:flex justify-center items-center ">
       
  
@@ -209,6 +219,9 @@ const DashBoardSideBar = ({active,setActive}) => {
 
   </div>
   </div>
+    
+           
+  
   
 
 )}
