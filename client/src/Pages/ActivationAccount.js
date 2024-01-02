@@ -7,15 +7,17 @@ import axios from 'axios'
 const ActivationAccount = () => {
    const{activation_token} = useParams()
    const[errorr,setError]= useState(false)
+   const [processToken , setProcessToken] = useState(false)
    
    useEffect(()=>{
-    if(activation_token){
+    if(activation_token && !processToken){
         console.log("userEffer");
         const activationEmail = async()=>{
             try{
                 
                 const res = await axios.post(`https://webearn-dsk8.vercel.app/api/v2/user/activation`,{activation_token})
                 console.log(res)
+                setProcessToken(true)
             }
             catch(err){
                 console.log(err)
@@ -31,7 +33,7 @@ const ActivationAccount = () => {
     }
    
     
-   },[activation_token]
+   },[activation_token,processToken]
    )
 
 

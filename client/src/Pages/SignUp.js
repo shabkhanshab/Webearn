@@ -178,6 +178,7 @@ console.log("avatar",avatar);
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your Email"
                       type="email"
+                      autoCorrect="false"
                       className="py-2 px-3 w-full block appearance-none border text-sm border-gray-300 placeholder-gray-400
                     focus:ring-blue-500 focus:border-blue-500 focus:outline-none rounded-sm sm:text-sm font-medium"
                     ></input>

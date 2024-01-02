@@ -84,13 +84,13 @@ export const createUser = async (req, res, next) => {
 
 export const accountActivation = AsyncHandler(async (req, res, next) => {
   try {
-    console.log("Req",req);
+ 
     
     const {activation_token} = req.body;
     
     if (activation_token) {
 
-        console.log("start",activation_token)
+        // console.log("start",activation_token)
 
         
 
@@ -220,14 +220,14 @@ export const resetPass = catchAsynError(async(req,res,next)=>{
               The newShop Team `
         });
 
-        if(passUpdateEmail){
+        
           res.json({
 
           success: true,
           //  replace with password Change Successfully
           message: `Password Change Successfully`,
           })
-        }
+        
        }
      catch(err){
       return next(new ErrorHandler(err.message, 500));
@@ -331,7 +331,7 @@ export const throughemailresetpass = catchAsynError(async(req,res,next)=>{
               secure: true
             })
              try{
-             const passUpdateEmail = await nodeMail({
+            await nodeMail({
                email:email,
                subject: "[newShop] Change password ",
                text: 
@@ -384,7 +384,7 @@ export const forgetEmail = catchAsynError(async(req,res,next)=>{
     const token = resetActivationToken(user)
     const activeTokenUrl = `https://webearn.vercel.app/resetactivation/${token} `
     try{
-     const passUpdateEmail =await nodeMail({
+    await nodeMail({
        email:checkid.email,
        subject: "[newShop] Change password ",
        text: 
@@ -396,14 +396,14 @@ export const forgetEmail = catchAsynError(async(req,res,next)=>{
            The newShop Team `
      });
 
-     if(passUpdateEmail){
+    
        res.json({
 
        success: true,
        //  replace with password Change Successfully
        message: `Password Change Email ${checkid.email} send Successfully`,
        })
-     }
+     
     }
   catch(err){
    return next(new ErrorHandler(err.message, 500));

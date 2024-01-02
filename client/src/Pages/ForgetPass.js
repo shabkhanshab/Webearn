@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import { RxCross1 } from 'react-icons/rx'
+import Loader from '../anim/Loader'
 const ForgetPass = () => {
 
     const [email,setEmail] = useState("")
+    const[loading,setLoading] = useState(false)
     const navigate = useNavigate()
 
     const handelClose = ()=>{
@@ -15,6 +17,7 @@ const ForgetPass = () => {
     const handelSubmit = async()=>{
 
         try{
+            setLoading(true)
             const data = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/forget-email",{email})
 
             if(data){
@@ -27,12 +30,22 @@ const ForgetPass = () => {
 
         }
         catch(err){
+            setLoading(false)
             console.log(err)
             toast.error(err.response && err.response.data.message ? err.response.data.message : err.message)
     
         }
+        finally{
+            setLoading(false)
+        }
     }
   return (
+    <>
+    {
+        loading ? <Loader/> : 
+
+  
+   
     <div className='w-full min-h-screen  bg-[#003459]   flex 800px:justify-center items-center flex-col py-12 sm:px-6 lg:px-8'>
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="800px:mt-3 text-center mt-[40px] text-3xl font-extrabold text-[#ffffff] ">
@@ -73,7 +86,7 @@ const ForgetPass = () => {
                className='px-4 py-3 800px:py-2 border-[2px] shadow-md bg-[#007ea7] rounded  '
                onClick={handelSubmit}
                >
-                <span className='text-[16px] text-white font-[600] 800px:text-[19px] '>
+                <span className='text-[16px] text-white font-[600] 800px:text-[19px] cursor-pointer '>
 
                 Submit
                 </span>
@@ -88,6 +101,8 @@ const ForgetPass = () => {
         </div>
         
     </div>
+}
+    </>
   )
 }
 
