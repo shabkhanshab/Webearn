@@ -65,14 +65,13 @@ console.log("avatar",avatar);
     e.preventDefault();
 
     try {
+      setLoading(true)
       const dat = await axios.post(
         "https://webearn-dsk8.vercel.app/api/v2/user/create-user",
         { name, email,  password, avatar }
       );
-      setLoading(true)
-      
-      if(dat){
-        setLoading(false)
+     
+        
         toast.success(dat.data.message);
         navigate("/login");
         setName("");
@@ -80,7 +79,7 @@ console.log("avatar",avatar);
         setPass("");
         setComfirmPass("");
         setAvatar();
-      }
+      
      
     } catch (err) {
       setLoading(false)
@@ -91,13 +90,26 @@ console.log("avatar",avatar);
       );
       // console.log(err.response.data.message)
     }
+    finally {
+      setLoading(false); 
+    }
   };
 
   return (
     <>
    
     {
-      loading ? <Loader/> :
+      loading ? 
+     <div className="bg-[#003459] py-12 min-h-screen sm:px-6 lg:px-8 flex justify-center flex-col">
+
+<div className="flex justify-center  ">
+  {console.log("enter")}
+  <Loader/>
+  </div>
+    
+      </div>
+      
+      :
     <>
   
 

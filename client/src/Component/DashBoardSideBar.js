@@ -32,9 +32,11 @@ const DashBoardSideBar = ({active,setActive}) => {
 
   return (
     <>
+    {/* <div className='w-full h-[87.5vh] bg-white shadow-sm overflow-y-scroll sticky top-0 left-0 z-10'>
+       */}
   
-    <div className='w-full h-[87.5vh] bg-white shadow-sm
-     overflow-y-scroll sticky top-0 left-0 z-10 pt-8 p-4 
+    <div className='800px:w-full h-screen 800px:h-[87.5vh] bg-[white] shadow-sm 
+     overflow-y-scroll mt-[80px] 800px:mt-0 fixed 800px:sticky top-0 left-0 z-10 p-4 pt-4
     
     
     '>

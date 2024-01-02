@@ -14,28 +14,30 @@ const Dashboard = () => {
 const [active,setActive] = useState(1)
 
   return (
+
     <div >
         <DashBoardHeader active={active} setActive={setActive}/>
 
         <div className={`w-full flex   `}>
-            <div className='w-[20%]  800px:w-[20%]  '>
+            <div className='w-[18%]  800px:w-[20%]  '>
 
                 <DashBoardSideBar active={active} setActive={setActive}/>
             </div>
-            <div className='w-[80%] h-full mt-5 ml-3  bg-white 800px:w-[75%]'>
+            <div className='w-[80%] h-full mt-5 ml-3  mr-3 800px:bg-white 800px:w-[75%]'>
             <DashBoardMain active={active} setActive={setActive}/>
             
             </div>
 
            
          
-           
+
                 
 
            
 
 
         </div>
+        
   
 
 

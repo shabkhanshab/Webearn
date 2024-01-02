@@ -59,13 +59,18 @@ const DashBoardMain = ({ active ,setActive}) => {
                    object-cover border-[4px] border-[#5947cf]  "
                   src={`${user.user.avatar.url &&  user.user.avatar.url }`}
                 ></img>:
-                 <IoPerson
-                 className="w-[150px] mt-8 h-[150px] rounded-full object-cover border-[4px] 
+                 <div
+                 className="w-[120px] mt-8 h-[120px] 
+                 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+                   rounded-full object-cover border-[4px]  flex items-center justify-center
                  border-[#5947cf]  "
 
                 >
+                  <span className="text-white font-Roboto text-8xl font-[600]  shadow-sm ">
+                    {user.user && user.user.name}
+                    </span>
 
-              </IoPerson>
+              </div>
               }
 
               <div
@@ -227,8 +232,8 @@ const DashBoardMain = ({ active ,setActive}) => {
 };
 
 const AllOffers = () => {
-    const [offersm, setOffers] = useState([]);
-    const [offname, setOffName] = useState([]);
+    // const [offersm, setOffers] = useState([]);
+    // const [offname, setOffName] = useState([]);
     const [combinedOffers, setCombinedOffers] = useState([]);
     const {user} = useSelector((state)=>state.userRed)
     console.log(user,"user");
@@ -239,8 +244,8 @@ const AllOffers = () => {
                   function(data)
                   {
                       var offers = '';
-            var offArray =[]
-            var nameArray=[]
+            // var offArray =[]
+            // var nameArray=[]
             var combinedArray =[]
                       $.each(data.offers, function(o, offer)
                       {
@@ -251,10 +256,15 @@ const AllOffers = () => {
                              title: offer.title,
                              amount: offer.amount,
                              rank:offer.rank,
-                             description:offer.description
+                             description:offer.description,
+                             mobileBol:offer.mobile_app_type,
+                             category_name:offer.category_name
+
+
 
                              }
                         ); 
+                        console.log("offer",offer);
             //   after complete remove these
                         // nameArray.push(offer.title)
                         // offArray.push(offer.link)
@@ -361,12 +371,25 @@ const AllOffers = () => {
         rank: item.rank,
         // offerName:item.title,
         payout:  item.amount +"$",
+        mobile: item.mobileBol,
         description: item.description,
       });
     });
+//     const comb=[{rank:"1",
+//   description:"loremloremhlo lorencbuwdbjak",
+//   title:"surveyyy",
+//   amount:"10.20$"
+// },
+// {rank:"1",
+//   description:"loremloremlo lorencbuwdbjakloremloremhlo lorencbuwdbjak",
+//   title:"surveyyy",
+//   amount:"10.20$"
+// }]
 
   return (
-    <div className="bg-white flex  mt-10 h-full ml-2
+    <>
+    
+    <div className="bg-white hidden 800px:flex  mt-10 h-full ml-2
      w-full   flex' overflow-x-scroll overflow-y-scroll ">
 <div className="pl-1 py-1 w-full ">
       <DataGrid
@@ -378,7 +401,63 @@ const AllOffers = () => {
       ></DataGrid>
     </div>
     </div>
-    
+
+    <div className="800px:hidden w-full   overflow-y-auto flex-1
+     flex-col shadow-xl justify-center items-center">
+   
+      {
+       
+        (combinedOffers.length !==0)
+         ? 
+         combinedOffers.map((item,i)=>(
+        
+
+          <div className="w-full px-3 py-2  my-5 shadow-lg bg-[#ffc0cbec] " key={i}>
+           {console.log("object")}
+            <div className="flex w-full flex-col space-y-2">
+              <div className="flex justify-between ">
+              <h2>{item.rank}</h2>
+              <h3>{((item.amount * 40)/100).toFixed(2)}$</h3>
+                </div>
+                <div className="flex items-center">
+                  <h1 className="text-blue-500 font-[600] text-[17px]">
+                 { 
+      
+                  <Link to={item.link}>
+                  {item.title}
+
+                </Link>
+            
+        
+        }
+                    
+                    </h1>
+                  </div>
+                  <div className="flex  py-2 ">
+                  <h3 className="mr-2">{item.mobileBol}</h3>
+                  <h3>({item.category_name})</h3>
+</div>
+                  <p >
+                    {item.description}
+                  </p>
+              
+              </div>
+            </div>
+      
+         ))
+
+        :
+
+        <div className="flex justify-center items-center">
+       
+          <h1 className="text-[18px] font-[600]  font-Roboto">
+            Sorry no offers </h1>
+          </div>
+      }
+      
+
+    </div>
+    </>
   );
 };
 
@@ -490,7 +569,9 @@ const {user} = useSelector((state)=>state.userRed)
 
 
   return (
-    <div className="bg-white flex  mt-10 h-full ml-2
+    <>
+   
+    <div className="  bg-white flex  mt-10 h-full ml-2
      w-full   flex' overflow-x-scroll overflow-y-scroll ">
 <div className="pl-1 py-1 w-full ">
       <DataGrid
@@ -502,6 +583,9 @@ const {user} = useSelector((state)=>state.userRed)
       ></DataGrid>
     </div>
     </div>
+   
+    </>
+
   );
 };
 

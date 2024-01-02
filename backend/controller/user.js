@@ -30,20 +30,26 @@ export const createUser = async (req, res, next) => {
   
 
   console.log("afterr")
-
-const myCloud = await cloudinary.v2.uploader.upload(
-  avatar,{folder:'avatars'},
-)
-
+ 
   const user = {
     name: name,
     email: email,
     password: password,
-    avatar: {
+   
+  };
+
+  if(avatar){
+    const myCloud = await cloudinary.v2.uploader.upload(
+      avatar,{folder:'avatars'},
+    )
+   user.avatar= {
       public_id: myCloud.public_id,
       url:myCloud.secure_url
-    },
-  };
+    }
+  }
+
+
+ 
 
     const token =   activationToken(user);
     const activeTokenUrl = `https://webearn.vercel.app/activation/${token}`;
@@ -83,7 +89,7 @@ export const accountActivation = AsyncHandler(async (req, res, next) => {
     if (activation_token) {
         console.log("start",activation_token)
 
-        const TokenCheck = await  jwt.verify(
+        const TokenCheck =   jwt.verify(
             activation_token,
             process.env.ACTIVATION_KEY,
             (err, verified) => {
@@ -104,13 +110,17 @@ export const accountActivation = AsyncHandler(async (req, res, next) => {
       }
       else{
         const { name, email, password, avatar } = TokenCheck;
+        const user = {
+          name,
+          email,
+          password,
+        }
+        if(avatar){
+          user.avatar = avatar
+        }
         
-      const createUser = await User.create({
-        name,
-        email,
-        password,
-        avatar,
-      });
+      const createUser = await User.create(user);
+
       console.log("nnnnnnnn")
       if (createUser) {
         console.log("user creating")

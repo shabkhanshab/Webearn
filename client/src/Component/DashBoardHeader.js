@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { BiMessageSquareDetail } from 'react-icons/bi'
 import { FaWallet} from 'react-icons/fa'
-
+import { IoMdMenu} from 'react-icons/io'
 
 const DashBoardHeader = ({active , setActive}) => {
 
@@ -16,13 +16,13 @@ const DashBoardHeader = ({active , setActive}) => {
   return (
     <>
     
-    <div className=' hidden w-full sticky h-[80px] bg-white shadow top-0 left-0
+    <div className=' hidden w-full sticky h-[80px] bg-[white] shadow top-0 left-0
      z-30 800px:flex items-center justify-between px-4'>
 
         <div>
             <Link to='/dashboard'>
-                <div className='rounded object-cover shadow w-[72px] h-[70px] ml-5'>
-                <img className=' rounded-full bg-[black]'
+                <div className='rounded object-cover  w-[72px] h-[70px] ml-5'>
+                <img className=' rounded-full '
                 
                 
                 src={require('../anim/webEarn.jpeg')}
@@ -103,7 +103,18 @@ const DashBoardHeader = ({active , setActive}) => {
                             user.user  ? <img 
                             className='rounded-full w-[45px] h-[45px] object-cover ml-8'
                             src={`${user.user.avatar.url}`}>
-                            </img> :null
+                            </img> :
+                            <div
+                            className='rounded-full  border-[2px]  flex items-center justify-center
+                            border-[#5947cf]
+                            bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+                            w-[45px] h-[45px] object-cover ml-8 '
+                            >
+                                <span className="text-white font-Roboto text-3xl font-[600]  shadow-sm ">
+                                {user.user && user.user.name}
+                    </span>
+
+                                </div>
 
                         }
                 
@@ -118,6 +129,12 @@ const DashBoardHeader = ({active , setActive}) => {
 
 <div className='800px:hidden w-screen sticky h-[80px] bg-white shadow top-0 left-0
      z-30 flex items-center justify-between px-4 '>
+
+        {/* <div>
+            <IoMdMenu size={20}>
+
+            </IoMdMenu>
+        </div> */}
 
 <div>
             <Link to='/dashboard'>

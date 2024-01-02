@@ -10,12 +10,13 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Lottie from "lottie-react";
 import AnimationLogin from '../anim/Animation - Login.json'
-
+import Loader from "../anim/Loader";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [visible, setVisible] = useState(false);
+  const [loading,setLoading] = useState(false)
   const navigate = useNavigate()
   const {isAuthenticatd } = useSelector((state)=>state.userRed)
 
@@ -32,25 +33,27 @@ const Login = () => {
     e.preventDefault()
     // , {withCredentials:true} 
     try{
+      setLoading(true)
       const user = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/login-user",
       {email,pass} 
       ,{withCredentials:true})
       
-      if(user){
-        // console.log(user)
-        // console.log(user.data.message)
+    
         toast.success("login Successfull")
         setEmail("")
         setPass("")
         navigate("/dashboard")
         window.location.reload(true); 
-      }
-     
+      
       
     }
     catch(err){
       // console.log(err)
+      setLoading(false)
       toast.error(err.response && err.response.data.message ? err.response.data.message : err.message)
+    }
+    finally {
+      setLoading(false); 
     }
   }
 
@@ -67,6 +70,22 @@ const Login = () => {
 
 
   return (
+
+    <>
+  {
+       loading ? 
+       <div className="bg-[#003459] py-12 min-h-screen sm:px-6 lg:px-8 flex justify-center flex-col">
+  
+  <div className="flex justify-center  ">
+    {console.log("enter")}
+    <Loader/>
+    </div>
+      
+        </div>
+        
+        :
+
+  
     <div className="h-screen 800px:min-h-screen  bg-[#003459] flex flex-col 800px:justify-center py-12 sm:px-6 lg:px-8">
     <div className="flex 800px:justify-between  w-full justify-center">
 
@@ -195,6 +214,8 @@ const Login = () => {
   </div>
   </div>
 </div>
+}
+</>
   );
 };
 
