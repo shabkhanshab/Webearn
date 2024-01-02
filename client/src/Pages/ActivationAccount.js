@@ -31,8 +31,10 @@ const ActivationAccount = () => {
     }
    
     
-   },[]
+   },[activation_token]
    )
+
+
 
 
   return (

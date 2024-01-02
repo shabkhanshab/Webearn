@@ -89,7 +89,10 @@ export const accountActivation = AsyncHandler(async (req, res, next) => {
     const {activation_token} = req.body;
     
     if (activation_token) {
+
         console.log("start",activation_token)
+
+        
 
         const TokenCheck =   jwt.verify(
             activation_token,
@@ -112,6 +115,11 @@ export const accountActivation = AsyncHandler(async (req, res, next) => {
       }
       else{
         const { name, email, password, avatar } = TokenCheck;
+        const checkUser = await User.findOne({email})
+        if(!checkUser){
+          
+        
+
         const user = {
           name,
           email,
@@ -130,13 +138,16 @@ export const accountActivation = AsyncHandler(async (req, res, next) => {
       } else {
         console.log("user can't be created!!");
       }
+    }
       }
 
       
     } else {
       return next(new ErrorHandler("Token not found", 404));
     }
-  } catch (err) {
+  }
+  
+  catch (err) {
     return next(new ErrorHandler(err.message, 500));
 
   }

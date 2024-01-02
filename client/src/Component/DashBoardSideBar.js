@@ -8,6 +8,7 @@ import {TbAddressBook} from 'react-icons/tb'
 import { MdPassword } from "react-icons/md"
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import Loader from '../anim/Loader'
 
 
 const DashBoardSideBar = ({active,setActive}) => {
