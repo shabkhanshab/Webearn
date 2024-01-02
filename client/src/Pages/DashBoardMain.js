@@ -31,7 +31,7 @@ const DashBoardMain = ({ active ,setActive}) => {
   useEffect(() => {
     if (user.user) {
       setName(user.user.name);
-      setAvatar(user.user.avatar.url);
+      // setAvatar(user.user.avatar.url);
       setEmail(user.user.email);
     }
   }, []);
@@ -52,7 +52,7 @@ const DashBoardMain = ({ active ,setActive}) => {
           <div className="flex justify-center mt-10 w-full ">
             <div className="relative">
               {
-                user.user ?
+                user.user.avatar ?
                 <img
                   alt=""
                   className="w-[150px] mt-5 h-[150px] rounded-full
@@ -67,7 +67,7 @@ const DashBoardMain = ({ active ,setActive}) => {
 
                 >
                   <span className="text-white font-Roboto text-8xl font-[600]  shadow-sm ">
-                    {user.user && user.user.name}
+                    {user.user && user.user.name.charAt(0).toUpperCase()}
                     </span>
 
               </div>
