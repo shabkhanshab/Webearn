@@ -73,6 +73,7 @@ export const createUser = async (req, res, next) => {
           message: `please check your email :- ${user.email} to activate your acccount `,
          } );
       }
+
    catch (err) {
       return next(new ErrorHandler(err.message, 500));
     }
@@ -83,6 +84,7 @@ export const createUser = async (req, res, next) => {
 
 export const accountActivation = AsyncHandler(async (req, res, next) => {
   try {
+    console.log("Req",req);
     
     const {activation_token} = req.body;
     

@@ -10,6 +10,7 @@ const ActivationAccount = () => {
    
    useEffect(()=>{
     if(activation_token){
+        console.log("userEffer");
         const activationEmail = async()=>{
             try{
                 
