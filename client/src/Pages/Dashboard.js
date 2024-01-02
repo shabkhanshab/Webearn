@@ -7,13 +7,16 @@ import styles from '../Style/style';
 import DashBoardDash from '../Component/SubComp/DashBoardDash';
 
 const Dashboard = () => {
-   const {user} = useSelector((state)=>state.userRed)
+   const {user,isAuthenticatd} = useSelector((state)=>state.userRed)
 //    console.log("user.cpa_details",user.cpa_details);
 //    console.log("us",user);
 //    console.log("user.cpa_details",user.user.cpa_details);
 const [active,setActive] = useState(1)
 
+console.log("is",isAuthenticatd);
+
   return (
+
 
     <div >
         <DashBoardHeader active={active} setActive={setActive}/>

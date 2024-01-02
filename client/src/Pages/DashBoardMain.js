@@ -36,9 +36,9 @@ const DashBoardMain = ({ active ,setActive}) => {
     }
   }, []);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-  };
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  // };
 
   const sendEmail =()=>{
     toast.info(`we have send the request for reset password to ${email}`)
@@ -84,29 +84,28 @@ const DashBoardMain = ({ active ,setActive}) => {
           <br />
           <br />
           <div className="w-full px-5">
-            <form onSubmit={submitHandler} aria-required={true}>
+            <form  aria-required={true}>
               <div className="w-full 800px:flex 800px:pb-10 block ">
                 <div className="800px:w-[50%] w-full">
                   <label className="block pb-2"> Full Name</label>
-                  <input
-                    type="text"
-                    autoCorrect="false"
-                    required
+                  <div
+                    
                     className={`${styles.input} !w-[95%] text-[#000000c1] border-[2px] border-indigo-500`}
-                    value={name && name}
-                    onChange={(e) => setName(e.target.value)}
+                   
+                    
                   />
+                  {name && name}
                 </div>
 
                 <div className="800px:w-[50%] w-full">
                   <label className="block pb-2"> Email</label>
-                  <input
-                    type="email"
-                    required
+                  <div
+                   
                     className={`${styles.input} !w-[95%] text-[#000000c1] border-[2px] border-indigo-500`}
-                    value={email && email}
-                    onChange={(e) => setEmail(e.target.value)}
+                   
+                   
                   />
+                  {email && email}
                 </div>
               </div>
 
