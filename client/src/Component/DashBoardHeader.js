@@ -24,7 +24,7 @@ const DashBoardHeader = ({active , setActive}) => {
         try{
             const id = user.user && user.user._id
             setLoading(true)
-            const data = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/raise-ticket",
+            const data = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/unraise-ticket",
             {id},{withCredentials:true})
             
             window.location.reload()
@@ -111,7 +111,7 @@ const DashBoardHeader = ({active , setActive}) => {
                     {
                         user.user && (user.user.raiseTicket === true && 
                             <div onClick={(e)=>setRaiseClick(!raiseClick)}>
-                                 <IoHandRightSharp  color='#555'
+                                 <IoHandRightSharp  color='yellow'
                         size={25}/>
                                 </div>
                             
@@ -277,12 +277,14 @@ user.user
 
 {
     raiseClick && <>
-    <div className=' w-full z-30 h-screen top-0 left-0 bg-[#0000004a] flex justify-center items-center '>
-        <div className='w-full 800px:w-[30%] bg-white px-2 py-2'>
-            <div className=' w-full flex justify-end '
+<div className=' w-full z-50 h-screen py-5
+ px-2 top-0 left-0 bg-[#0000004a] fixed
+800px:flex justify-center items-center '>
+        <div className='w-full 800px:w-[30%] bg-white shadow-lg rounded-[10px]'>
+            <div className=' w-full flex justify-end  pt-3 pr-3'
             onClick={handelRaiseCLose}
             >
-                <RxCross1 size={30}/>
+                <RxCross1 size={20}/>
 
             </div>
             <div className='w-full'>

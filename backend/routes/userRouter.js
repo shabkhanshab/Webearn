@@ -28,6 +28,6 @@ router.get('/log-out',isAuthenticate,logout)
 router.post('/payment-method-delete',isAuthenticate,deletePaymentMethod)
 router.post('/add-pay-upi',isAuthenticate,addUpiPayment)
 router.post('/raise-ticket',isAuthenticate,raiseTicket)
-router.post('/unRaise-Ticket',isAuthenticate,unRaiseTicket)
+router.post('/unraise-ticket',isAuthenticate,unRaiseTicket)
 
 export default router
