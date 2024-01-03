@@ -152,7 +152,7 @@ const DashBoardHeader = ({active , setActive}) => {
                             
                             user.user  ? 
                             
-                               ( user.user. avatar ?
+                               ( user.user.avatar ?
                                 <img 
                             className='rounded-full w-[45px] h-[45px] object-cover ml-8'
                             src={`${user.user.avatar && user.user.avatar.url}`}>

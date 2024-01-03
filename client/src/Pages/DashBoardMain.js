@@ -55,6 +55,9 @@ const DashBoardMain = ({ active ,setActive}) => {
             <div className="relative">
               {
                 user.user ?
+                (
+                  user.user.avatar?
+                
                 <img
                   alt=""
                   className="w-[150px] mt-5 h-[150px] rounded-full
@@ -73,6 +76,11 @@ const DashBoardMain = ({ active ,setActive}) => {
                     </span>
 
               </div>
+                ):
+                <IoPerson
+                className="w-[150px] mt-5 h-[150px] rounded-full
+                object-cover border-[4px] border-[#5947cf]  "
+                            />
               }
 
               <div
@@ -578,7 +586,7 @@ const {user} = useSelector((state)=>state.userRed)
   return (
     <>
    
-    <div className="  bg-white flex  mt-10 h-full ml-2
+    <div className=" hidden  bg-white 800px:flex  mt-10 h-full ml-2
      w-full   flex' overflow-x-scroll overflow-y-scroll ">
 <div className="pl-1 py-1 w-full ">
       <DataGrid
@@ -589,6 +597,64 @@ const {user} = useSelector((state)=>state.userRed)
         pagination={1}
       ></DataGrid>
     </div>
+    </div>
+
+
+    <div className="800px:hidden w-full   overflow-y-auto flex-1
+     flex-col shadow-xl justify-center items-center">
+   
+      {
+        user.user && 
+       
+        (user.user.cpa_details.length !== 0)
+         ? 
+         user.user.cpa_details.map((item,i)=>(
+        
+
+          <div className="w-full px-3 py-2  my-5 shadow-lg bg-[#ffc0cbec] " key={i}>
+           {console.log("object")}
+            <div className="flex w-full flex-col space-y-2">
+              <div className="flex justify-between ">
+              <h2>{item.rank}</h2>
+              <h3>{((item.amount * 40)/100).toFixed(2)}$</h3>
+                </div>
+                <div className="flex items-center">
+                  <h1 className="text-blue-500 font-[600] text-[17px]">
+                 { 
+      
+                  <Link to={item.link}>
+                  {item.title}
+
+                </Link>
+            
+        
+        }
+                    
+                    </h1>
+                  </div>
+                  <div className="flex  py-2 ">
+                  <h3 className="mr-2">{item.mobileBol}</h3>
+                  <h3>({item.category_name})</h3>
+</div>
+                  <p >
+                    {item.description}
+                  </p>
+              
+              </div>
+            </div>
+      
+         ))
+
+        :
+
+        <div className="flex justify-center items-center">
+       
+          <h1 className="text-[18px] font-[600]  font-Roboto">
+            Sorry no offers </h1>
+          </div>
+      }
+      
+
     </div>
    
     </>
@@ -832,12 +898,16 @@ const PaymentMethod =({setActive,trace})=>{
   
           </div>
         <div className="800px:pl-8 800px:flex 800px:items-start">
-          <h6> { user.user &&
-          user.user.paymentMethod ?
-       ( (user.user.paymentMethod.payment === ""  ) ?  
-       "Add Payment Method " : user.user.paymentMethod.payment)
+          <h6>
+
+       {user.user && (
+        user.user.paymentMethod.payment && (
+          user.user.user.paymentMethod.payment ?  user.user.paymentMethod.payment : "Add Payment Method "
+        )
+       )}
        
-       : ""}</h6>
+       
+       </h6>
          
 
         </div>
@@ -847,9 +917,9 @@ const PaymentMethod =({setActive,trace})=>{
             user.user ?
 
        ( 
-        user.user.paymentMethod.payment !== "" ?
-         user.user.paymentMethod.paymentAdd.slice(0,10) :
-          "" )
+        user.user.paymentMethod.payment &&
+         user.user.paymentMethod.paymentAdd.slice(0,10) 
+          )
           :""
 
         }</h5>
