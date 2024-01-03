@@ -1173,13 +1173,13 @@ const PaymentMethod =({setActive,trace})=>{
    <AiOutlineEye
        size={25}
        className="absolute right-2 cursor-pointer top-8"
-       onClick={() => reqShowPass(false)}
+       onClick={() => setReqShowPass(false)}
      ></AiOutlineEye>
    :
    <AiOutlineEyeInvisible
    size={25}
    className="absolute right-2 cursor-pointer top-8"
-   onClick={() => reqShowPass(true)}
+   onClick={() => setReqShowPass(true)}
  ></AiOutlineEyeInvisible>
  }
  </div>

@@ -167,6 +167,7 @@ export const loginUser = catchAsynError(async(req,res,next)=>{
 
     if(await checkUser.comparePassword(pass)){
       sendToken(checkUser,201,res)
+      
 
 
     }
