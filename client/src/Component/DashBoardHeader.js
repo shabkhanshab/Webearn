@@ -22,7 +22,7 @@ const DashBoardHeader = ({active , setActive}) => {
     
     const handelUnraiseTicket =async()=>{
         try{
-            const id = user && user._id
+            const id = user.user && user.user._id
             setLoading(true)
             const data = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/raise-ticket",
             {id},{withCredentials:true})
@@ -109,7 +109,7 @@ const DashBoardHeader = ({active , setActive}) => {
                     </Link> */}
 
                     {
-                        user.user && (user.user.Balance === true && 
+                        user.user && (user.user.raiseTicket === true && 
                             <div onClick={(e)=>setRaiseClick(!raiseClick)}>
                                  <IoHandRightSharp  color='#555'
                         size={25}/>
