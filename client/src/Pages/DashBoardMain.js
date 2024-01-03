@@ -800,12 +800,14 @@ const PaymentMethod =({setActive,trace})=>{
             {
                 user.user && 
 
-            (user.user.paymentMethod.payment ==='' ) ? 
+            (user.user.paymentMethod.payment) ? 
+           null :
+
             <div className={`${styles.button} !rounded-md`}
             onClick={()=>setAddNewClick(true)}
             >
               <span className="text-[#fff]">Add New</span>
-              </div> : null
+              </div> 
         
         }
       </div>
@@ -1042,7 +1044,7 @@ const PaymentMethod =({setActive,trace})=>{
         <>
          <div className="flex w-full mt-5 justify-center items-center">
    <div className={`${styles.button} !rounded-md px-2 py-3 cursor-pointer`}
-   onClick={moneyTransferReq}
+   onClick={(e)=>setMoneyPopup(true)}
    >
          <span className="text-white font-[600] ">
           Send request

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { BiMessageSquareDetail } from 'react-icons/bi'
 import { FaWallet} from 'react-icons/fa'
 import { IoMdMenu} from 'react-icons/io'
-import { IoHandRightSharp } from "react-icons/io5";
+import { IoHandRightSharp, IoPerson } from "react-icons/io5";
 import Loader from '../anim/Loader'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -150,10 +150,14 @@ const DashBoardHeader = ({active , setActive}) => {
                         {
                             
                             
-                            user.user  ? <img 
+                            user.user  ? 
+                            
+                               ( user.user. avatar ?
+                                <img 
                             className='rounded-full w-[45px] h-[45px] object-cover ml-8'
                             src={`${user.user.avatar && user.user.avatar.url}`}>
-                            </img> :
+                            </img>
+                             :
                             <div
                             className='rounded-full  border-[2px]  flex items-center justify-center
                             border-[#5947cf]
@@ -165,6 +169,14 @@ const DashBoardHeader = ({active , setActive}) => {
                     </span>
 
                                 </div>
+                                
+                                )
+                            
+                            : <IoPerson
+                            className='rounded-full w-[45px] h-[45px] object-cover ml-8'
+
+                            />
+                            
 
                         }
                 
