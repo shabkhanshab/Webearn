@@ -777,7 +777,7 @@ const PaymentMethod =({setActive,trace})=>{
    const moneyTransferReq = async()=>{
     try{ 
       setLoad(true)
-      const id = user && user._id
+      const id = user.user && user.user._id
       console.log("fid",id);
       if(id){
       const data = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/raise-ticket",
@@ -1165,7 +1165,7 @@ const PaymentMethod =({setActive,trace})=>{
   hover:border-[2px] block  placeholder:placeholder-[#0000004c]"
   placeholder="Enter your password"
   required
-  type={reqShowPass ? "text" : 'password'}
+  type={reqShowPass ? "text" : "password"}
   value={reqpass}
   onChange={(e)=>setReqPass(e.target.value)}
   >
