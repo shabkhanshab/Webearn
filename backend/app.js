@@ -48,6 +48,7 @@ app.post('/postback/conversion',async(req,res)=>{
     const lead_id = data.lead_id
     const country_iso = data.country_iso // add this in user code of someone tell you to add all county
     const password = data.password
+   
     var user_payout
    
     try{
@@ -79,7 +80,14 @@ app.post('/postback/conversion',async(req,res)=>{
                         user_payout
 
                     })
+
+                    
                     await user.save()
+
+                   await User.updateOne(
+                       
+                        { $inc: { Balance: user_payout } }
+                      );
                     
                 }
                 else{

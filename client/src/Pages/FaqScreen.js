@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
-import Header from '../Component/Header'
-import Footer from '../Component/Footer'
 import styles from '../Style/style'
+
 
 
 const FaqScreen = () => {
   return (
     <div>
-      <Header activeHandel={5}/>
-      <br/>
-      <br/>
+     
+     
       <FAQ/>
-      <Footer/>
+     
         
     </div>
   )
@@ -46,7 +44,7 @@ const FAQ =()=>{
           onClick={()=>toogleTab(1)}
           >
             <span className='text-lg font-medium text-gray-900'>
-              How do i track my order?
+            When will I get paid on webEarn?
             </span>
             
               {activeTab === 1 ? 
@@ -87,9 +85,11 @@ const FAQ =()=>{
               activeTab === 1 && (
                 <div className='mt-4'>
                   <p className='text-base text-gray-500'>
-                    we typically process and ship order within 1-2 business days.
-                    Depending on your location , it can take an additional 2-7 days 
-                    for your order to arrive.
+                  You will get paid on a daily basis, which means you get
+                   paid EVERY day for offers labeled as Fast Pay offers. 
+                   This means every 24 hours. There are still some offers in our system 
+                   that pay on a NET30 basis and if you'd like
+                   to avoid those, then simply only promote offers that have the 'Fast Pay' label next to them.
                   </p>
 
                 </div>
@@ -106,7 +106,7 @@ const FAQ =()=>{
           onClick={()=>toogleTab(2)}
           >
             <span className='text-lg font-medium text-gray-900'>
-              What is your return policy?
+              How to Complete the offer?
             </span>
             
               {activeTab === 2 ? 
@@ -147,10 +147,9 @@ const FAQ =()=>{
               activeTab === 2 && (
                 <div className='mt-4'>
                   <p className='text-base text-gray-500'>
-                    we typically process and ship order within 1-2 business days.
-                    Depending on your location , it can take an additional 2-7 days 
-                    for pickup your order and after 24 hours we will return  your
-                     payment in your bank account.
+                    You just need to click on the offer name that shows in blue color. 
+                    After that you will be redirect to the main window of offer then 
+                    follow the instuction and complete the offer.
                   </p>
 
                 </div>
@@ -169,7 +168,7 @@ const FAQ =()=>{
           onClick={()=>toogleTab(3)}
           >
             <span className='text-lg font-medium text-gray-900'>
-              How do i track my order?
+            When can i request for transfer ?
             </span>
             
               {activeTab === 3 ? 
@@ -210,9 +209,8 @@ const FAQ =()=>{
               activeTab === 3 && (
                 <div className='mt-4'>
                   <p className='text-base text-gray-500'>
-                    we typically process and ship order within 1-2 business days.
-                    Depending on your location , it can take an additional 2-7 days 
-                    for your order to arrive.
+                    You can transfer money by sending the request to us.
+                    you can only send request when  have atleast 3$ balance in your account.
                   </p>
 
                 </div>
@@ -230,7 +228,7 @@ const FAQ =()=>{
           onClick={()=>toogleTab(4)}
           >
             <span className='text-lg font-medium text-gray-900'>
-              How do i connect customer support?
+              What's the payment menthod ?
             </span>
             
               {activeTab === 4 ? 
@@ -271,9 +269,9 @@ const FAQ =()=>{
               activeTab === 4 && (
                 <div className='mt-4'>
                   <p className='text-base text-gray-500'>
-                    we typically process and ship order within 1-2 business days.
-                    Depending on your location , it can take an additional 2-7 days 
-                    for your order to arrive.
+                    Click on PaymentMethod option then click on add new then add upi
+                     then send request us for money. 
+                    We Will transfer money to your account directly 
                   </p>
 
                 </div>
@@ -291,7 +289,7 @@ const FAQ =()=>{
           onClick={()=>toogleTab(5)}
           >
             <span className='text-lg font-medium text-gray-900'>
-              Can i change or cancel my order?
+              In how much days i received payment?
             </span>
             
               {activeTab === 5 ? 
@@ -332,10 +330,7 @@ const FAQ =()=>{
               activeTab === 5 && (
                 <div className='mt-4'>
                   <p className='text-base text-gray-500'>
-                    we typically process and ship order within 1-2 business days.
-                    Depending on your location , it can take an additional 2-7 days 
-                    for your order to arrive.
-                  </p>
+                    You will receive the payment of this month at the end of next month.                   </p>
 
                 </div>
               )
@@ -344,7 +339,7 @@ const FAQ =()=>{
         </div>
 
 
-        <div className='border-b border-gray-200 pb-4'>
+        {/* <div className='border-b border-gray-200 pb-4'>
          
          <button 
          className='flex items-center justify-between w-full '
@@ -460,7 +455,7 @@ const FAQ =()=>{
              )
            }
 
-       </div>
+       </div> */}
 
       </div>
 

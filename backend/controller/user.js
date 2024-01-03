@@ -544,12 +544,85 @@ export const addUpiPayment = catchAsynError(async(req,res,next)=>{
 
 // postback url req 
 
-export const postbackurl = catchAsynError(async(req,res,next)=>{
+export const raiseTicket = catchAsynError(async(req,res,next)=>{
   try{
+    const {password,id} = req.body
+
+    if(!password || !id){
+       return next(new ErrorHandler("Please try again later", 400))
+    }
+
+    const checkUser = await User.findById(id).select("+password")
+//  just complete the task and then raise the ticket to true and then
+//  make a route to unraise the tcket and show the raise ticket in the header 
+
+    if(checkUser){
+      if(await checkUser.comparePassword(pass)){
+        if(checkUser.Balance >= 5 ){
+
+        
+        const raise = await User.findOneAndUpdate({_id:id},{raiseTicket:true})
+        if(raise){
+          res.status(200).json({
+           message:"Ticket raise successfully!!"
+          })
+
+        }
+        else{
+          return next(new ErrorHandler("Can't update data! try again later"),500)
+        }
+      }
+      else{
+        return next (new ErrorHandler("Sorry!! minimun balance should be equal or gretaer than 5"))
+      }
+      }
+      else{
+        return next (new ErrorHandler("Wrong password!!",400))
+      }
+    }
     
 
   }
   catch(err){
-
+    return next (new ErrorHandler(err.message,500))
   }
 })
+
+
+export const unRaiseTicket = catchAsynError(async(req,res,next)=>{
+  try{
+    
+    const {id} = req.body
+    if(!id){
+      return next(new ErrorHandler("user not found! try after sometime!!",400))
+    }
+    const checkuser = await User.findById(id)
+    if(checkuser){
+      const unraise = await User.findOneAndUpdate({_id:id},{Balance:false})
+      if(unraise){
+        res.status(200).json({
+         message: "Ticket Unraise Successfully!!"
+        })
+      }
+      else{
+
+      return next (new ErrorHandler("Sorry we can't proceed your request!!",500))
+
+      }
+
+    }
+    else{
+      return next (new ErrorHandler("Please login again to continue!!",400))
+    }
+
+  }
+  catch(err){
+    return next (new ErrorHandler(err.message,500))
+
+  }
+
+
+})
+
+
+

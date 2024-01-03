@@ -12,6 +12,8 @@ import {toast} from 'react-toastify'
 import {IoPerson} from 'react-icons/io5'
 
 import $ from 'jquery'
+import FaqScreen from "./FaqScreen";
+import Loader from "../anim/Loader";
 
 
 
@@ -36,9 +38,9 @@ const DashBoardMain = ({ active ,setActive}) => {
     }
   }, []);
 
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-  // };
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
 
   const sendEmail =()=>{
     toast.info(`we have send the request for reset password to ${email}`)
@@ -52,12 +54,12 @@ const DashBoardMain = ({ active ,setActive}) => {
           <div className="flex justify-center mt-10 w-full ">
             <div className="relative">
               {
-                user.user.avatar ?
+                user.user ?
                 <img
                   alt=""
                   className="w-[150px] mt-5 h-[150px] rounded-full
                    object-cover border-[4px] border-[#5947cf]  "
-                  src={`${user.user.avatar.url &&  user.user.avatar.url }`}
+                  src={`${user.user.avatar &&  user.user.avatar.url }`}
                 ></img>:
                  <div
                  className="w-[120px] mt-8 h-[120px] 
@@ -84,28 +86,31 @@ const DashBoardMain = ({ active ,setActive}) => {
           <br />
           <br />
           <div className="w-full px-5">
-            <form  aria-required={true}>
+            <form onSubmit={submitHandler} aria-required={true}>
               <div className="w-full 800px:flex 800px:pb-10 block ">
                 <div className="800px:w-[50%] w-full">
                   <label className="block pb-2"> Full Name</label>
-                  <div
-                    
+                  <input
+                    type="text"
+                    autoCorrect="false"
+                    required
+                    contentEditable="false"
                     className={`${styles.input} !w-[95%] text-[#000000c1] border-[2px] border-indigo-500`}
-                   
-                    
+                    value={name && name}
+                    onChange={(e) => setName(e.target.value)}
                   />
-                  {name && name}
                 </div>
 
                 <div className="800px:w-[50%] w-full">
                   <label className="block pb-2"> Email</label>
-                  <div
-                   
+                  <input
+                    type="email"
+                    required
+                    contentEditable="false"
                     className={`${styles.input} !w-[95%] text-[#000000c1] border-[2px] border-indigo-500`}
-                   
-                   
+                    value={email && email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
-                  {email && email}
                 </div>
               </div>
 
@@ -224,6 +229,9 @@ const DashBoardMain = ({ active ,setActive}) => {
         }
         
         </div>}
+        {
+          active === 6 && <FaqScreen/>
+        }
         
      
     </div>
@@ -695,7 +703,39 @@ const PaymentMethod =({setActive,trace})=>{
     const [addnewClick,setAddNewClick] = useState(false)
     const [upi,setUpi] = useState("")
     const [showUpi,setShowUpi] = useState(false)
-   
+   const [showReqButton, setShowReqButton] = useState(false)
+   const[moneyPopup,setMoneyPopup] = useState(false)
+   const [reqpass,setReqPass] = useState("")
+   const [load,setLoad] = useState(false)
+   const [reqShowPass,setReqShowPass] = useState(false)
+   const moneyTransferReq = async()=>{
+    try{ 
+      setLoad(true)
+      const id = user && user._id
+      const data = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/raise-ticket",
+      {reqpass,id},{withCredentials:true})
+      setActive(trace)
+      window.location.reload()
+      toast.success(data.data.message,{toastId:"Success1"})
+    }
+
+    catch(err){
+      setLoad(false)
+      toast.error(
+        err.response && err.response.data.message
+        ? err.response.data.message
+        : err.message
+        ,{
+            toastId:"Success1"
+        }
+      )
+    }
+    finally{
+      setLoad(false)
+    }
+  
+
+   }
    const DeleteButtonHandel = async ()=>{
     try{
         const id = user.user._id
@@ -751,6 +791,7 @@ const PaymentMethod =({setActive,trace})=>{
    }
 
   return(
+    load ? <Loader/> : 
     <div className="w-full px-5">
 
         
@@ -994,6 +1035,109 @@ const PaymentMethod =({setActive,trace})=>{
    )}
 
 
+   {
+    user.user && 
+      (user.user.Balance >= 5 ?
+
+        <>
+         <div className="flex w-full mt-5 justify-center items-center">
+   <div className={`${styles.button} !rounded-md px-2 py-3 cursor-pointer`}
+   onClick={moneyTransferReq}
+   >
+         <span className="text-white font-[600] ">
+          Send request
+          </span>
+         </div>
+
+   </div>
+
+        </>
+        : ""
+        
+        )
+    
+   }
+
+   {
+    moneyPopup && 
+    <div className="top-0 left-0 w-full  h-screen bg-[#0000004b]  py-5 px-2
+    fixed z-30  800px:flex justify-center items-center ">
+       {console.log("ehy")}
+  
+     <div className="800px:w-[30%]  w-full bg-white shadow-lg rounded-[10px] ">
+
+       <div className="flex justify-end pt-3 pr-3">
+         <RxCross1 className="cursor-pointer" 
+         onClick={handelClose}
+          size={20}/>
+</div>
+<div className="flex  flex-col item-start justify-start w-full px-5 py-5">
+
+ <h2 className="font-[500] text-blue-500 text-[15px] pb-2"></h2>
+ <h1 className="font-[600] text-[22px] pb-2">
+  Send Money transfer Request!!
+ </h1>
+ <h4> Click the button and raise the ticket.   </h4>
+<div className="relative  mt-5">
+   <label
+   htmlFor="password"
+   
+   >
+       Enter your password
+       </label>
+
+ <input className="w-full px-2 py-2 border relative border-[#000000b3] hover:border-indigo-500 
+  hover:border-[2px] block  placeholder:placeholder-[#0000004c]"
+  placeholder="Enter your password"
+  required
+  type={reqShowPass ? "text" : 'password'}
+  value={reqpass}
+  onChange={(e)=>setReqPass(e.target.value)}
+  >
+ </input>
+
+ {
+   showPass ?
+   <AiOutlineEye
+       size={25}
+       className="absolute right-2 cursor-pointer top-8"
+       onClick={() => reqShowPass(false)}
+     ></AiOutlineEye>
+   :
+   <AiOutlineEyeInvisible
+   size={25}
+   className="absolute right-2 cursor-pointer top-8"
+   onClick={() => reqShowPass(true)}
+ ></AiOutlineEyeInvisible>
+ }
+ </div>
+
+
+   <div className="w-full flex justify-end item-end mt-5 mb-2">
+       <button className='px-4 py-2 bg-black border text-white font-[600]
+       text-[15px] hover:border-[2px] rounded-[3px] shadow-md'
+       onClick={moneyTransferReq}
+       >
+           Send request
+
+       </button>
+
+
+   </div>
+
+</div>
+        
+
+
+     
+
+   </div>
+   </div>
+   }
+
+ 
+
+
 
 
 
@@ -1056,7 +1200,8 @@ const Password =({name,trace,setActive,user})=>{
   const [confirmPassword,setConfirmPassword]= useState("")
   const[confirmpassClick,setConfirmPassClick] = useState(false)
   const id = user.user && user.user._id
-
+  const [loadsend,setLoadSend] = useState(false)
+ 
   const sendEmail =async()=>{
 
     console.log("firs",id)
@@ -1071,6 +1216,7 @@ const Password =({name,trace,setActive,user})=>{
     }
 
     try{
+      setLoadSend(true)
       const {data} = 
       await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/reset-pass",
       {password,newPassword,id},
@@ -1080,14 +1226,19 @@ const Password =({name,trace,setActive,user})=>{
       toast.success(data.message)
     }
     catch(err){
+      setLoadSend(false)
       toast.error(err.response && err.response.data.message ? err.response.data.message : err.message)
 
+    }
+    finally{
+      setLoadSend(false)
     }
    
   }
 
   const forgetEmail= async()=>{
     try{
+      setLoadSend(true)
       const {data} = 
       await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/forget-email",
       {id},
@@ -1098,12 +1249,19 @@ const Password =({name,trace,setActive,user})=>{
     
     }
     catch(err){
+      setLoadSend(false)
       toast.error(err.response && err.response.data.message ? err.response.data.message : err.message)
 
+    }
+    finally{
+      setLoadSend(false)
     }
   }
 
   return(
+    loadsend ? <Loader/> : 
+   <>
+  
     <div className="top-0 left-0 w-full  h-screen bg-[#0000004b]  py-5 px-2
      fixed z-30  800px:flex justify-center items-center ">
    
@@ -1211,6 +1369,7 @@ const Password =({name,trace,setActive,user})=>{
 
     </div>
     </div>
+    </>
     
   )
 

@@ -3,6 +3,8 @@ import { RxCross1, RxDashboard, RxPerson } from 'react-icons/rx'
 import {HiOutlineShoppingBag,HiOutlineReceiptRefund} from 'react-icons/hi'
 import { AiOutlineCreditCard, AiOutlineLogin, AiOutlineMessage } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
+import { FaQuestion } from "react-icons/fa6";
+
 import {MdOutlineLocalOffer, MdOutlineTrackChanges} from 'react-icons/md'
 import {TbAddressBook} from 'react-icons/tb'
 import { MdPassword } from "react-icons/md"
@@ -151,13 +153,26 @@ const DashBoardSideBar = ({active,setActive}) => {
             </h5>
 
         </div>
+
+        <div className='flex items-center cursor-pointer w-full mb-8'
+        onClick={()=>setActive(6)}>
+
+            <FaQuestion size={28} color={active == 6 ? "red" : ""}/>
+            <h5 className={` hidden 800px:flex pl-3 800px:pl-2 text-[15px] 800px:text-[18px] font-[500] 800px:font-[400]
+            ${active === 6 ? "text-[crimson]":"text-[#555]"}
+            `}>
+            
+            Faq
+            </h5>
+
+        </div>
         
 
         <div className='flex items-center cursor-pointer w-full '
-        onClick={()=>setActive(6) || setClickLogOut(true) } >
+        onClick={()=>setActive(7) || setClickLogOut(true) } >
 
-            <AiOutlineLogin size={30} color={active == 6 ? "red" : ""}/>
-            <span className={` hidden 800px:flex pl-3 ${active === 6 ? "text-[red]" :""}`}> Log Out</span>
+            <AiOutlineLogin size={30} color={active == 7 ? "red" : ""}/>
+            <span className={` hidden 800px:flex pl-3 ${active === 7 ? "text-[red]" :"text-[#555]"}`}> Log Out</span>
 
 
         </div>

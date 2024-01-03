@@ -13,7 +13,7 @@ const Dashboard = () => {
 //    console.log("user.cpa_details",user.user.cpa_details);
 const [active,setActive] = useState(1)
 
-console.log("is",isAuthenticatd);
+// console.log("is",isAuthenticatd);
 
   return (
 

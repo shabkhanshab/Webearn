@@ -7,15 +7,53 @@ import { Link } from 'react-router-dom'
 import { BiMessageSquareDetail } from 'react-icons/bi'
 import { FaWallet} from 'react-icons/fa'
 import { IoMdMenu} from 'react-icons/io'
+import { IoHandRightSharp } from "react-icons/io5";
+import Loader from '../anim/Loader'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import { RxCross1 } from 'react-icons/rx'
 
 const DashBoardHeader = ({active , setActive}) => {
 
     const {user} = useSelector((state)=>state.userRed)
     const [pay,setPay] = useState(0)
+    const [loading,setLoading] = useState(false)
+    const [raiseClick,setRaiseClick] = useState(false)
+    
+    const handelUnraiseTicket =async()=>{
+        try{
+            const id = user && user._id
+            setLoading(true)
+            const data = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/raise-ticket",
+            {id},{withCredentials:true})
+            
+            window.location.reload()
+            toast.success(data.data.message,{toastId:"Success1"})
+        }
+        catch(err){
+            setLoading(false)
+            toast.error(
+              err.response && err.response.data.message
+              ? err.response.data.message
+              : err.message
+              ,{
+                  toastId:"Success1"
+              }
+            )
+          }
+          finally{
+            setLoading(false)
+          }
+    }
+
+    const handelRaiseCLose =()=>{
+        setRaiseClick(false)
+    }
 
   return (
     <>
-    
+    {loading ? <Loader/> : 
+    <>
     <div className=' hidden w-full sticky h-[80px] bg-[white] shadow top-0 left-0
      z-30 800px:flex items-center justify-between px-4'>
 
@@ -70,9 +108,21 @@ const DashBoardHeader = ({active , setActive}) => {
                         </FiPackage>
                     </Link> */}
 
+                    {
+                        user.user && (user.user.Balance === true && 
+                            <div onClick={(e)=>setRaiseClick(!raiseClick)}>
+                                 <IoHandRightSharp  color='#555'
+                        size={25}/>
+                                </div>
+                            
+                       
+                        
+                        )
+                    }
+
                     
                    
-                        <FaWallet color='#555' size={28} className='cursor-pointer mx-4'>
+                        <FaWallet color="#555" size={28} className='cursor-pointer mx-4'>
 
                         </FaWallet>
                         {console.log("object")}
@@ -100,9 +150,9 @@ const DashBoardHeader = ({active , setActive}) => {
                         {
                             
                             
-                            user.user.avatar  ? <img 
+                            user.user  ? <img 
                             className='rounded-full w-[45px] h-[45px] object-cover ml-8'
-                            src={`${user.user.avatar.url && user.user.avatar.url}`}>
+                            src={`${user.user.avatar && user.user.avatar.url}`}>
                             </img> :
                             <div
                             className='rounded-full  border-[2px]  flex items-center justify-center
@@ -178,6 +228,17 @@ user.user
 
 
 
+    {
+                        user.user && (user.user.Balance === true && 
+                            <div onClick={(e)=>setRaiseClick(!raiseClick)}>
+                                 <IoHandRightSharp  color='#555'
+                        size={25}/>
+                                </div>
+                            
+                       
+                        
+                        )
+                    }
 
 
             <div className='flex'>
@@ -185,7 +246,7 @@ user.user
 
 </FaWallet>
 {console.log("object")}
-
+{/* cahnge this to Balance field for show amount in wallet */}
 {user.user ? 
 (user.user.cpa_details &&
      user.user.cpa_details.reduce((acc,currentValue)=>{
@@ -201,6 +262,43 @@ user.user
            
 </div>
 
+
+{
+    raiseClick && <>
+    <div className=' w-full z-30 h-screen top-0 left-0 bg-[#0000004a] flex justify-center items-center '>
+        <div className='w-full 800px:w-[30%] bg-white px-2 py-2'>
+            <div className=' w-full flex justify-end '
+            onClick={handelRaiseCLose}
+            >
+                <RxCross1 size={30}/>
+
+            </div>
+            <div className='w-full'>
+                <h2 className='font-[600] text-[16px]'>Attention!!</h2>
+                <h3>Are you sure!! Your want to unraise the payment transfer request ticket </h3>
+            </div>
+            <div className='w-full flex'>
+
+                <button className='px-2 py-2 bg-black  rounded-sm flex items-center justify-center
+                 hover:border-[1px] hover:border-black'
+                 onClick={handelUnraiseTicket}>
+                    <span className='text-[16px] font-[600] text-white'>Unraise Ticket</span>
+
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+    </>
+}
+
+
+
+
+
+</>
+}
 </>
 
 

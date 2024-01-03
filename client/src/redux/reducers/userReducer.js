@@ -4,7 +4,7 @@ export const userReducer = createSlice({
     name:"userReducer",
     initialState:{
         isAuthenticatd:false,
-        loading:false,
+        loading:true,
         error:"",
         user:{}
     },

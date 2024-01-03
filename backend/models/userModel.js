@@ -63,6 +63,14 @@ const userSchema = new mongoose.Schema({
     }
    
   },
+  Balance:{
+    type:Number,
+    default:0
+  },
+  raiseTicket:{
+    type:Boolean,
+    default :false
+  },
 
 
   cpa_details:[

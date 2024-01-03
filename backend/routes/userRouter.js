@@ -2,8 +2,9 @@
 
 import  express  from "express";
 import { accountActivation, addUpiPayment, createUser, deletePaymentMethod, forgetEmail, getUser, 
-    loginUser, logout, resetPass, resetpassactivation, 
-    throughemailresetpass } from "../controller/user.js";
+    loginUser, logout, raiseTicket, resetPass, resetpassactivation, 
+    throughemailresetpass, 
+    unRaiseTicket} from "../controller/user.js";
 import isAuthenticate from "../middleware/isAuthenticate.js";
 
 
@@ -26,6 +27,7 @@ router.post("/forget-email",forgetEmail)
 router.get('/log-out',isAuthenticate,logout)
 router.post('/payment-method-delete',isAuthenticate,deletePaymentMethod)
 router.post('/add-pay-upi',isAuthenticate,addUpiPayment)
-
+router.post('/raise-ticket',isAuthenticate,raiseTicket)
+router.post('/unRaise-Ticket',isAuthenticate,unRaiseTicket)
 
 export default router
