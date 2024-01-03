@@ -778,12 +778,15 @@ const PaymentMethod =({setActive,trace})=>{
     try{ 
       setLoad(true)
       const id = user && user._id
+      console.log("fid",id);
+      if(id){
       const data = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/raise-ticket",
       {reqpass,id},{withCredentials:true})
       setActive(trace)
       window.location.reload()
       toast.success(data.data.message,{toastId:"Success1"})
-    }
+       } 
+      }
 
     catch(err){
       setLoad(false)
@@ -1169,7 +1172,7 @@ const PaymentMethod =({setActive,trace})=>{
  </input>
 
  {
-   showPass ?
+   reqShowPass ?
    <AiOutlineEye
        size={25}
        className="absolute right-2 cursor-pointer top-8"

@@ -547,9 +547,9 @@ export const addUpiPayment = catchAsynError(async(req,res,next)=>{
 
 export const raiseTicket = catchAsynError(async(req,res,next)=>{
   try{
-    const {password,id} = req.body
-
-    if(!password || !id){
+    const {reqpass,id} = req.body
+    // console.log("bid",id,"pass",password);
+    if(!reqpass || !id){
        return next(new ErrorHandler("Please try again later", 400))
     }
 
@@ -558,7 +558,7 @@ export const raiseTicket = catchAsynError(async(req,res,next)=>{
 //  make a route to unraise the tcket and show the raise ticket in the header 
 
     if(checkUser){
-      if(await checkUser.comparePassword(pass)){
+      if(await checkUser.comparePassword(reqpass)){
         if(checkUser.Balance >= 5 ){
 
         
