@@ -53,7 +53,7 @@ const DashBoardHeader = ({active , setActive}) => {
   return (
     <>
     {loading ? 
-    <div className='z-40  w-full'>
+    <div className='z-50  w-full h-screen'>
  <Loader/>
     </div>
     : 
@@ -298,9 +298,9 @@ user.user
                 <h2 className='font-[600] text-[18px]'>Attention!!</h2>
                 <h3>Are you sure!! Your want to unraise the payment transfer request ticket </h3>
             </div>
-            <div className='w-full flex justify-end items-end mb-3 ml-3'>
+            <div className='w-full flex justify-end items-end mb-3 mr-3'>
 
-                <button className='px-2 py-2 bg-black  rounded-sm flex items-center justify-center
+                <button className='px-2 py-2 bg-black  shadow-lg rounded-sm flex items-center justify-center
                  hover:border-[1px] hover:border-black'
                  onClick={handelUnraiseTicket}>
                     <span className='text-[16px] font-[600] text-white'>Unraise Ticket</span>

@@ -36,8 +36,9 @@ const AdminDashBoard = () => {
     useEffect(()=>{
         const myUsers = async()=>{
             try{
+                const auth="MYADMINAUTH"
                 const data = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/my-user-admin",
-                "MYADMINAUTH")
+                {auth})
                 setUser(data.user)
             }
             catch(err){
