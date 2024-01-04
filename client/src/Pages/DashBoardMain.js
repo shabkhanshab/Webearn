@@ -905,7 +905,7 @@ const PaymentMethod =({setActive,trace})=>{
 
        {user.user && (
         user.user.paymentMethod.payment && (
-          user.user.user.paymentMethod.payment ?  user.user.paymentMethod.payment : "Add Payment Method "
+          user.user.paymentMethod.payment ?  user.user.paymentMethod.payment : "Add Payment Method "
         )
        )}
        
@@ -1042,14 +1042,14 @@ const PaymentMethod =({setActive,trace})=>{
                onClick={handelClose}
                 size={20}/>
      </div>
-     <div className="flex flex-col items-start justify-start w-full px-5 py-5">
+     <div className="flex flex-col items-start justify-start w-full px-3 py-3">
      
        <h2 className="font-[500] text-blue-500 text-[15px] pb-2"></h2>
        <h1 className="font-[600] text-[22px] pb-2">
         Add payment Method 
        </h1>
        <h4> Please be careful while adding the payment Method.   </h4>
-       <div className="relative  mt-5">
+       <div className="relative w-full  mt-5">
          <label
          htmlFor="password"
          className="font-[600]"

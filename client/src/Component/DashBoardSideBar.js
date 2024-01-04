@@ -197,13 +197,12 @@ const DashBoardSideBar = ({active,setActive}) => {
         onClick={()=>setActive(1) || setClickLogOut(false)}
          size={20}/>
 </div>
-<div className="flex  flex-col items-center justify-center w-full  py-5">
+<div className="flex  flex-col items-center justify-center w-full  py-5 ">
 
-<h2 className="font-[500] text-blue-500 text-[15px] pb-2"></h2>
 <h1 className="font-[600]  text-[22px] pb-2">
  Attention!!  LogOut
 </h1>
-<h4> Are you sure you want to logout.   </h4>
+<h4 className='800px:px-3 '> Are you sure you want to logout.   </h4>
 
 
 

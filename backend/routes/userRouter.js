@@ -1,7 +1,7 @@
 
 
 import  express  from "express";
-import { accountActivation, addUpiPayment, createUser, deletePaymentMethod, forgetEmail, getUser, 
+import { accountActivation, addUpiPayment, allUserAdmin, createUser, deletePaymentMethod, forgetEmail, getUser, 
     loginUser, logout, raiseTicket, resetPass, resetpassactivation, 
     throughemailresetpass, 
     unRaiseTicket} from "../controller/user.js";
@@ -29,5 +29,6 @@ router.post('/payment-method-delete',isAuthenticate,deletePaymentMethod)
 router.post('/add-pay-upi',isAuthenticate,addUpiPayment)
 router.post('/raise-ticket',isAuthenticate,raiseTicket)
 router.post('/unraise-ticket',isAuthenticate,unRaiseTicket)
+router.post('/my-user-admin',allUserAdmin)
 
 export default router

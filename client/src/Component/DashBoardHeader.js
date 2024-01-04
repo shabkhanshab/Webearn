@@ -52,7 +52,11 @@ const DashBoardHeader = ({active , setActive}) => {
 
   return (
     <>
-    {loading ? <Loader/> : 
+    {loading ? 
+    <div className='z-40  w-full'>
+ <Loader/>
+    </div>
+    : 
     <>
     <div className=' hidden w-full sticky h-[80px] bg-[white] shadow top-0 left-0
      z-30 800px:flex items-center justify-between px-4'>
@@ -110,8 +114,9 @@ const DashBoardHeader = ({active , setActive}) => {
 
                     {
                         user.user && (user.user.raiseTicket === true && 
-                            <div onClick={(e)=>setRaiseClick(!raiseClick)}>
-                                 <IoHandRightSharp  color='yellow'
+                            <div 
+                            onClick={(e)=>setRaiseClick(!raiseClick)}>
+                                 <IoHandRightSharp  color='yellow' className='cursor-pointer'
                         size={25}/>
                                 </div>
                             
@@ -241,9 +246,9 @@ user.user
 
 
     {
-                        user.user && (user.user.Balance === true && 
+                        user.user && (user.user.raiseTicket === true && 
                             <div onClick={(e)=>setRaiseClick(!raiseClick)}>
-                                 <IoHandRightSharp  color='#555'
+                                 <IoHandRightSharp  color='#555' className='cursor-pointer'
                         size={25}/>
                                 </div>
                             
@@ -282,16 +287,18 @@ user.user
 800px:flex justify-center items-center '>
         <div className='w-full 800px:w-[30%] bg-white shadow-lg rounded-[10px]'>
             <div className=' w-full flex justify-end  pt-3 pr-3'
-            onClick={handelRaiseCLose}
+            
             >
-                <RxCross1 size={20}/>
+                <RxCross1 className='cursor-pointer'
+                onClick={handelRaiseCLose}
+                 size={20}/>
 
             </div>
-            <div className='w-full'>
-                <h2 className='font-[600] text-[16px]'>Attention!!</h2>
+            <div className='w-full px-3 py-2'>
+                <h2 className='font-[600] text-[18px]'>Attention!!</h2>
                 <h3>Are you sure!! Your want to unraise the payment transfer request ticket </h3>
             </div>
-            <div className='w-full flex'>
+            <div className='w-full flex justify-end items-end mb-3 ml-3'>
 
                 <button className='px-2 py-2 bg-black  rounded-sm flex items-center justify-center
                  hover:border-[1px] hover:border-black'

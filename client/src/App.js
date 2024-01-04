@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { userAction } from './redux/actions/userAction';
 import Dashboard from './Pages/Dashboard';
 import ProtectedRoute from './ProtectedRoute';
+import AdminDashBoard from './Pages/Admin/AdminDashBoard';
 
 function App() {
   const dispatch = useDispatch()
@@ -69,6 +70,16 @@ function App() {
               
               }
             ></Route>
+
+            <Route
+
+            path='/admin-dashboard/vhuyebbfheinamk8514@dnfheb'
+            element={
+              <AdminDashBoard/>
+            }
+            
+            >
+              </Route>
 
 
 

@@ -589,7 +589,7 @@ export const raiseTicket = catchAsynError(async(req,res,next)=>{
   }
 })
 
-
+//  we have to work on frotend 
 export const unRaiseTicket = catchAsynError(async(req,res,next)=>{
   try{
     
@@ -599,7 +599,7 @@ export const unRaiseTicket = catchAsynError(async(req,res,next)=>{
     }
     const checkuser = await User.findById(id)
     if(checkuser){
-      const unraise = await User.findOneAndUpdate({_id:id},{Balance:false})
+      const unraise = await User.findOneAndUpdate({_id:id},{raiseTicket:false})
       if(unraise){
         res.status(200).json({
          message: "Ticket Unraise Successfully!!"
@@ -623,6 +623,33 @@ export const unRaiseTicket = catchAsynError(async(req,res,next)=>{
   }
 
 
+})
+
+export const allUserAdmin  = catchAsynError(async(req,res,next)=>{
+  try{
+    const {auth} = req.body
+    if(auth === 'MYADMINAUTH'){
+          
+    const users = await User.find().sort(
+      {
+        createdAt : -1
+      }
+      
+    )
+    if(users){
+      res.status(200).json({
+        success:true,
+        users,
+      })
+    }
+  }
+  else{
+    return next (new ErrorHandler("not authenticated",401))
+  }
+  }
+  catch(err){
+    return next (new ErrorHandler(err.message, 500))
+  }
 })
 
 
