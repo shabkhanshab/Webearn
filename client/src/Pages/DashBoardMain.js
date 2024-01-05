@@ -312,20 +312,16 @@ const AllOffers = () => {
       minWidth: 150,
       flex: 0.7,
      renderCell: (params) => {
-        return (
-          <>
-            {/* {console.log(params,"params")} */}
-            {combinedOffers.map((i,e)=>(
-        // <div className='py-5 border-[2px] my-5 border-indigo-500 w-[50%]'>
-            <Link to={i.link} key={e}>
-            {i.title}
+      const currentOffer = combinedOffers[params.row.id - 1];
+      if(currentOffer){
+        return(
+          <Link to={currentOffer.link} >
+          {currentOffer.title}
 
-          </Link>
-        //   </div>
-        
-        ))}
-          </>
-        );
+        </Link>
+        )
+      }
+       
       },
     },
     
@@ -385,8 +381,8 @@ const AllOffers = () => {
         id:i+1,
         rank: item.rank,
         // offerName:item.title,
-        payout:  item.amount +"$",
-        mobile: item.mobileBol,
+        payout:  ((item.amount * 40)/100).toFixed(2) +"$",
+        device: item.mobileBol,
         description: item.description,
       });
     });

@@ -53,8 +53,10 @@ const DashBoardHeader = ({active , setActive}) => {
   return (
     <>
     {loading ? 
-    <div className='z-50  w-full h-screen'>
- <Loader/>
+    <div className="top-0 left-0 w-full  h-screen bg-[#0000004b]  py-5 px-2
+    fixed z-30  800px:flex justify-center items-center ">
+       <Loader/>
+  
     </div>
     : 
     <>
