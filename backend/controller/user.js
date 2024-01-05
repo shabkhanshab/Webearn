@@ -636,6 +636,7 @@ export const allUserAdmin  = catchAsynError(async(req,res,next)=>{
       }
       
     )
+    console.log("u",users);
     if(users){
       res.status(200).json({
         success:true,
