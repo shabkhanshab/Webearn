@@ -1108,8 +1108,11 @@ const PaymentMethod =({setActive,trace})=>{
 
    {
     user.user && 
-      (user.user.Balance >= 5 ?
+      (user.user.Balance >= 5 
+        
 
+        ?
+        user.user.paymentMethod.payment && (user.user.paymentMethod.payment!=="")  ? 
         <>
          <div className="flex w-full mt-5 justify-center items-center">
    <div className={`${styles.button} !rounded-md px-2 py-3 cursor-pointer`}
@@ -1123,7 +1126,10 @@ const PaymentMethod =({setActive,trace})=>{
    </div>
 
         </>
-        : ""
+        :"Please Add payment method to withdraw money in your bank account"
+        : 
+        
+        ""
         
         )
     

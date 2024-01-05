@@ -297,10 +297,10 @@ user.user
 
             </div>
             <div className='w-full px-3 py-2'>
-                <h2 className='font-[600] text-[18px]'>Attention!!</h2>
-                <h3>Are you sure!! Your want to unraise the payment transfer request ticket </h3>
+                <h2 className='font-[600] text-[18px] text-center'>Attention!!</h2>
+                <h3 className='px-2 py-2'>Are you sure!! Your want to unraise the payment transfer request ticket </h3>
             </div>
-            <div className='w-full flex justify-end items-end mb-3 mr-3'>
+            <div className='w-full flex justify-center items-end my-3 mr-3 '>
 
                 <button className='px-2 py-2 bg-black  shadow-lg rounded-sm flex items-center justify-center
                  hover:border-[1px] hover:border-black'

@@ -12,27 +12,7 @@ const AdminDashBoard = () => {
     // const {user} = useSelector((state)=> state.userRed )
     const [user,setUser] = useState([])
     
-    console.log(user);
-
-    const columns = [
-        {field:"id",headerName:"Id", minWidth:30 , flex:0.5},
-        {field:"name",headerName:"Name", minWidth:50 , flex:0.7},
-        {field:"email",headerName:"EMail", minWidth:100 , flex:0.7},
-        {field:"payment",headerName:"Payment", minWidth:30 , flex:0.5},
-        {field:"balance",headerName:"Balance", minWidth:50 , flex:0.5},
-    ]
-    const row = []
-
-    user.user && user.user.map((item,i)=>(
-        row.push({
-            id:i+1,
-            name:item.name,
-            email:item.email,
-            payment:item.paymentMethod && (item.paymentMethod.payment && item.paymentMethod.payment ),
-            balance:item.Balance
-        })
-    ))
-
+   
     useEffect(()=>{
         const myUsers = async()=>{
             try{
@@ -55,6 +35,27 @@ const AdminDashBoard = () => {
         }
         myUsers()
     },[])
+    console.log(user);
+    const columns = [
+        {field:"id",headerName:"Id", minWidth:30 , flex:0.5},
+        {field:"name",headerName:"Name", minWidth:50 , flex:0.7},
+        {field:"email",headerName:"EMail", minWidth:100 , flex:0.7},
+        {field:"payment",headerName:"Payment", minWidth:30 , flex:0.5},
+        {field:"balance",headerName:"Balance", minWidth:50 , flex:0.5},
+    ]
+    const row = []
+
+    user.user && user.user.map((item,i)=>(
+        row.push({
+            id:i+1,
+            name:item.name,
+            email:item.email,
+            payment:item.paymentMethod && (item.paymentMethod.payment && item.paymentMethod.payment ),
+            balance:item.Balance
+        })
+    ))
+
+   
 
 
 
