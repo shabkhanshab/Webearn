@@ -19,7 +19,7 @@ const AdminDashBoard = () => {
                 const auth="MYADMINAUTH"
                 const data = await axios.post("https://webearn-dsk8.vercel.app/api/v2/user/my-user-admin",
                 {auth})
-                setUser(data.user)
+                setUser(data.users)
             }
             catch(err){
                 toast.error(
@@ -35,7 +35,8 @@ const AdminDashBoard = () => {
         }
         myUsers()
     },[])
-    console.log(user);
+    console.log("user",user);
+    console.log("users",user.users);
     const columns = [
         {field:"id",headerName:"Id", minWidth:30 , flex:0.5},
         {field:"name",headerName:"Name", minWidth:50 , flex:0.7},
@@ -45,7 +46,7 @@ const AdminDashBoard = () => {
     ]
     const row = []
 
-    user.user && user.user.map((item,i)=>(
+    user.users && user.users.map((item,i)=>(
         row.push({
             id:i+1,
             name:item.name,
