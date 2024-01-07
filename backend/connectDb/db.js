@@ -1,9 +1,14 @@
 import mongoose from "mongoose";
 
-
+// process.env.DB_URL
 const db = async()=>{
     try{
-        const data=  await mongoose.connect(process.env.DB_URL,{
+        const data=  await mongoose.connect(
+            
+           'mongodb+srv://khanshab9343:m06VxDW7RuicwB4n@cluster0.wdrdfho.mongodb.net/pune'
+            ,
+            
+            {
             // useNewUrlParser:true,
             // useUnifiedTopology:true
         })

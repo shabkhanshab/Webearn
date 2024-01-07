@@ -628,7 +628,7 @@ export const unRaiseTicket = catchAsynError(async(req,res,next)=>{
 export const allUserAdmin  = catchAsynError(async(req,res,next)=>{
   try{
     const {auth} = req.body
-    if(auth === 'MYADMINAUTH'){
+    // if(auth === 'MYADMINAUTH'){
           
     const users = await User.find().sort(
       {
@@ -643,7 +643,7 @@ export const allUserAdmin  = catchAsynError(async(req,res,next)=>{
         users,
       })
     }
-  }
+  // }
   else{
     return next (new ErrorHandler("not authenticated",401))
   }
